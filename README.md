@@ -44,6 +44,28 @@
 ```bash
 nmap -sC -sV -oN nmap.log $IP
 ```
+
+**Basic Directory Discovery**
+#### Using `Feroxbuster`
+```bash
+feroxbuster -u http://$IP/ -w /path/to/wordlist.txt
+```
+
+#### Using `ffuf`
+```bash
+ffuf -u http://$IP/FUZZ -w /path/to/wordlist.txt -e .php,.txt,.zip,.bkp -t 40 # 40 - default
+```
+
+Recursive:
+```bash
+ffuf -u http://$IP/FUZZ -w /path/to/wordlist.txt -e .php,.txt,.zip,.bkp -t 40 -recursive
+```
+
+#### Using `dirb`
+```bash
+dirb http://$IP/ /path/to/wordlist.txt # -r to DISABLE recursion
+```
+
 **SQLi**
 ```
 ' OR 1=1 --
